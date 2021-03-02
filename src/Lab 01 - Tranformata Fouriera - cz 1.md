@@ -6,18 +6,19 @@
 ### Transformata fouriera sygnału dyskretnego, nieskończonego
 <!-- ![wzór](./_images/lab01/discrete_inf_fft.png) -->
 $$
-\begin{array}{c}
-X\left(e^{j \Omega}\right)=\sum_{n=-\infty}^{\infty} x\left(n T_{s}\right) e^{-j \Omega n} \\
+
+X\left(e^{j \Omega}\right)=\sum_{n=-\infty}^{\infty} x\left(n T_{s}\right) e^{-j \Omega n} $$
+$$
 x\left(n T_{s}\right)=\frac{1}{2 \pi} \int_{-\pi}^{\pi} X\left(e^{j \Omega}\right) e^{j \Omega n} d \Omega
-\end{array}
 $$
 
 ### Transformata Fouriera sygnału o skończonej długości:
 <!-- ![wzór](./_images/lab01/dft_fin.png) -->
-$$\begin{array}{c}
-X(k)=\sum_{n=0}^{N-1} x(n) e^{-j \frac{2 \pi}{N} k n}, k=0,1,2 \ldots \\
-x(n)=\frac{1}{N} \sum_{k=0}^{N-1} X(k) e^{j \frac{2 \pi}{N} k n}, n=0,1,2 \ldots
-\end{array}$$
+$$
+X(k)=\sum_{n=0}^{N-1} x(n) e^{-j \frac{2 \pi}{N} k n}, k=0,1,2 \ldots N-1$$
+$$
+x(n)=\frac{1}{N} \sum_{k=0}^{N-1} X(k) e^{j \frac{2 \pi}{N} k n}, n=0,1,2 \ldots N-1
+$$
 Implementacja transformaty może mieć postać:
 ``` python
 import numpy as np
@@ -84,14 +85,14 @@ xf = fftfreq(N, 1/Fs)
 Jednak musisz wiedzieć jak ten wektor jest generowany i jaka jest wartość pojedynczego kwantu częstotliwości (rozdzielczość widma)
 
 ## Zadania
-1. Proszę wygenerować sygnał s(t)=sin(2πt⋅1)+sin(2πt⋅3+π5) o długości 2.5 s próbkowany 100 Hz, obliczyć jego transformatę Fouriera za pomocą fft, a następnie zrekonstruować przebieg czasowy za pomocą ifft. Sygnał oryginalny i zrekonstruowany wykreślić na jednym rysunku. Uwaga: funkcja ifft zwraca wektor liczb zespolonych. Sprawdź jaka jest jego część urojona. Na wykresie rekonstrukcji przedstaw jego część rzeczywistą.
+1. Proszę wygenerować sygnał \\(s(t)=sin(2\pi\cdot t \cdot 1)+sin(2\pi \cdot t\cdot3+\pi/5)\\) o długości 2.5 s próbkowany 100 Hz, obliczyć jego transformatę Fouriera za pomocą fft, a następnie zrekonstruować przebieg czasowy za pomocą ifft. Sygnał oryginalny i zrekonstruowany wykreślić na jednym rysunku. Uwaga: funkcja ifft zwraca wektor liczb zespolonych. Sprawdź jaka jest jego część urojona. Na wykresie rekonstrukcji przedstaw jego część rzeczywistą.
 2. Proszę kolejno wygenerować sinusoidy o długości 1s próbkowaną 32Hz i częstościach 1,10, 16 i 0 i 17 Hz. Dla tych sinusoid proszę policzyć transformaty Fouriera i wykreślić zarówno sygnały jak i wartość bezwzględne otrzymanych współczynników.
 - Jak wyglądają otrzymane wykresy?
 - Czy coś szczególnego dzieje się dla częstości 0 i 16Hz? Czy w tych skrajnych przypadkach faza sygnału ma wpływ na wynik transformaty?
 
 3. Dla danych wejściowych z zadania 2 zmodyfikuj funkcję `dft`, tak, żeby zwracała widmo w przedziale <0;4f_s> przy zachowaniu dotychczasowej częstotliwości próbkowania. Otrzymane rezultaty zinterpretuj w świetle twierdzenia o próbkowaniu.
 
-4. Z dotychczasowych rozważań o transformacie Fouriera ograniczonych w czasie sygnałów dyskretnych wynika, że w widmie reprezentowane są częstości od −FN do FN gdzie FN to częstości Nyquista. Dostępnych binów częstości jest N - tyle samo ile obserwowanych punktów sygnału.
+4. Z dotychczasowych rozważań o transformacie Fouriera ograniczonych w czasie sygnałów dyskretnych wynika, że w widmie reprezentowane są częstości od \\(−f_n\\) do f_n\\) gdzie \\(f_n\\) to częstości Nyquista. Dostępnych binów częstości jest N - tyle samo ile obserwowanych punktów sygnału.
 
 - jaka jest rozdzielczość częstotliwościowa (odstęp między binami częstotliwości)  dla 1 s sygnału próbkowanego 10Hz?
 - jaka jest rozdzielczość częstotliwościowa (odstęp między binami częstotliwości)  dla 1 s sygnału próbkowanego 100Hz?

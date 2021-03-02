@@ -6,6 +6,7 @@
 
 ### Transformata Fouriera sygnału o skończonej długości:
 ![wzór](./_images/lab01/dft_fin.png)
+
 Implementacja transformaty może mieć postać:
 ``` python
 import numpy as np
@@ -19,7 +20,7 @@ def dft(x):
 ```
 
 ### Szybka transformata Fouriera (fft)
-Złożoność obliczeniowa implementacji dyskretnej transformaty Fouriera wynosi O(N^2). Bardziej wydajną metodą jest wykorzystanie algorytmu szybkiej transformacji Fouriera (O(Nlog(N))), bazującej na ![radix-2](https://en.wikipedia.org/wiki/Cooley%E2%80%93Tukey_FFT_algorithm).
+Złożoność obliczeniowa implementacji dyskretnej transformaty Fouriera wynosi O(N^2). Bardziej wydajną metodą jest wykorzystanie algorytmu szybkiej transformacji Fouriera (O(Nlog(N))), bazującej na [radix-2](https://en.wikipedia.org/wiki/Cooley%E2%80%93Tukey_FFT_algorithm).
 
 Przeanalizuj różnicę w czasie wykonania transformaty między funkcją dft a wbudowaną funkcją fft:
 ``` python
@@ -77,9 +78,9 @@ Jednak musisz wiedzieć jak ten wektor jest generowany i jaka jest wartość poj
 - Jak wyglądają otrzymane wykresy?
 - Czy coś szczególnego dzieje się dla częstości 0 i 16Hz? Czy w tych skrajnych przypadkach faza sygnału ma wpływ na wynik transformaty?
 
-4. Zmodyfikuj funkcję `dft`, tak, żeby zwracała widmo w przedziale <0;4f_s> przy zachowaniu dotychczasowej częstotliwości próbkowania. Otrzymane rezultaty zinterpretuj w świetle twierdzenia o próbkowaniu.
+3. Zmodyfikuj funkcję `dft`, tak, żeby zwracała widmo w przedziale <0;4f_s> przy zachowaniu dotychczasowej częstotliwości próbkowania. Otrzymane rezultaty zinterpretuj w świetle twierdzenia o próbkowaniu.
 
-5. Z dotychczasowych rozważań o transformacie Fouriera ograniczonych w czasie sygnałów dyskretnych wynika, że w widmie reprezentowane są częstości od −FN do FN gdzie FN to częstości Nyquista. Dostępnych binów częstości jest N - tyle samo ile obserwowanych punktów sygnału.
+4. Z dotychczasowych rozważań o transformacie Fouriera ograniczonych w czasie sygnałów dyskretnych wynika, że w widmie reprezentowane są częstości od −FN do FN gdzie FN to częstości Nyquista. Dostępnych binów częstości jest N - tyle samo ile obserwowanych punktów sygnału.
 
 - jaka jest rozdzielczość częstotliwościowa (odstęp między binami częstotliwości)  dla 1 s sygnału próbkowanego 10Hz?
 - jaka jest rozdzielczość częstotliwościowa (odstęp między binami częstotliwości)  dla 1 s sygnału próbkowanego 100Hz?
@@ -87,7 +88,7 @@ Jednak musisz wiedzieć jak ten wektor jest generowany i jaka jest wartość poj
 - jaka jest rozdzielczość częstotliwościowa (odstęp między binami częstotliwości)  dla 10 s sygnału próbkowanego 10Hz?
 - jaka jest rozdzielczość częstotliwościowa (odstęp między binami częstotliwości)  dla 100 s sygnału próbkowanego 10Hz?
 
-5. Wczytaj dane z pliku zawierającego ![sygnał EMG](https://chmura.put.poznan.pl/s/G285gnQVuCnfQAx/download?path=%2FData-HDF5&files=emg_gestures-12-repeats_short-2018-04-12-14-05-19-091.hdf5). Częstotliwość próbkowania sygnału wynosi 5120H, a plik zawiera rejestrację z 24 kanałów EMG z mięśni przedramienia podczas wykonywania różnych gestów dłonią. W dalszej analizie wykorzystaj kanał `EMG-15`
+5. Wczytaj dane z pliku zawierającego [sygnał EMG](https://chmura.put.poznan.pl/s/G285gnQVuCnfQAx/download?path=%2FData-HDF5&files=emg_gestures-12-repeats_short-2018-04-12-14-05-19-091.hdf5). Częstotliwość próbkowania sygnału wynosi 5120H, a plik zawiera rejestrację z 24 kanałów EMG z mięśni przedramienia podczas wykonywania różnych gestów dłonią. W dalszej analizie wykorzystaj kanał `EMG-15`
    - Zidentyfikuj częstotliwości 3 najsilniejszych składowych o widmie o charakterze impulsowym.
    - Spróbuj dokonać 10 krotnego downsamplingu (wybierając co 10 próbkę sygnału), nałóż widmo oryginalne i spróbkowane - spórbuj wyjaśnić obserwowane różnice.
    

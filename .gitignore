@@ -1,6 +1,7 @@
-.vscode
-Skip to content
-Search or jump to…
+**/.vscode/
+.idea/
+
+public/
 
 Pull requests
 Issues

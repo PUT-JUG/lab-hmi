@@ -3,7 +3,7 @@
 Options +Indexes
 
   # INDEX OPTIONS
-  IndexOptions +Charset=UTF-8 +FancyIndexing +IgnoreCase +FoldersFirst +XHTML +HTMLTable +SuppressRules +SuppressDescription -SuppressSize -SuppressLastModified +NameWidth=* +IconsAreLinks
+  IndexOptions +Charset=Windows-1250 +FancyIndexing +IgnoreCase +FoldersFirst +XHTML +HTMLTable +SuppressRules +SuppressDescription -SuppressSize -SuppressLastModified +NameWidth=* +IconsAreLinks
   IndexIgnore .* _*
 
   # META TAGS

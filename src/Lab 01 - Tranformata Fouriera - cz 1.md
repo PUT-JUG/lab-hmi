@@ -6,7 +6,6 @@
 ### Transformata fouriera sygnału dyskretnego, nieskończonego
 <!-- ![wzór](./_images/lab01/discrete_inf_fft.png) -->
 $$
-
 X\left(e^{j \Omega}\right)=\sum_{n=-\infty}^{\infty} x\left(n T_{s}\right) e^{-j \Omega n} $$
 $$
 x\left(n T_{s}\right)=\frac{1}{2 \pi} \int_{-\pi}^{\pi} X\left(e^{j \Omega}\right) e^{j \Omega n} d \Omega

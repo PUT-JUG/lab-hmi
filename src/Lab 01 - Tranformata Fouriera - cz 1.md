@@ -2,11 +2,20 @@
 
 ## Wstęp
 ### Transformata fouriera sygnału dyskretnego, nieskończonego
-![wzór](./_images/lab01/discrete_inf_fft.png)
+<!-- ![wzór](./_images/lab01/discrete_inf_fft.png) -->
+$$
+\begin{array}{c}
+X\left(e^{j \Omega}\right)=\sum_{n=-\infty}^{\infty} x\left(n T_{s}\right) e^{-j \Omega n} \\
+x\left(n T_{s}\right)=\frac{1}{2 \pi} \int_{-\pi}^{\pi} X\left(e^{j \Omega}\right) e^{j \Omega n} d \Omega
+\end{array}
+$$
 
 ### Transformata Fouriera sygnału o skończonej długości:
-![wzór](./_images/lab01/dft_fin.png)
-
+<!-- ![wzór](./_images/lab01/dft_fin.png) -->
+$$\begin{array}{c}
+X(k)=\sum_{n=0}^{N-1} x(n) e^{-j \frac{2 \pi}{N} k n}, k=0,1,2 \ldots \\
+x(n)=\frac{1}{N} \sum_{k=0}^{N-1} X(k) e^{j \frac{2 \pi}{N} k n}, n=0,1,2 \ldots
+\end{array}$$
 Implementacja transformaty może mieć postać:
 ``` python
 import numpy as np
@@ -33,9 +42,9 @@ np.allclose(dft(x), np.fft.fft(x)) #sprawdż czy wniki obu metod są zbliżone
 ### Częstotliwość Niquista i twierdzenie Shanona
 Częstotliwość Nyquista – maksymalna częstotliwość składowych widmowych sygnału poddawanego procesowi próbkowania, które mogą zostać odtworzone z ciągu próbek bez zniekształceń. Składowe widmowe o częstotliwościach wyższych od częstotliwości Nyquista ulegają podczas próbkowania nałożeniu na składowe o innych częstotliwościach (zjawisko aliasingu), co powoduje, że nie można ich już poprawnie odtworzyć.
 
-Zgodnie z twierdzeniem o próbkowaniu, przy próbkowaniu równomiernym z odstępem próbkowania T_{s}, warunkiem odtworzenia sygnału jest, aby maksymalna częstotliwość sygnału nie przekraczała połowy częstotliwości próbkowania, f_{max}<f_{s}/2 lub f_{max}<1/{2T_{s}}
+Zgodnie z twierdzeniem o próbkowaniu, przy próbkowaniu równomiernym z odstępem próbkowania \\(T_{s}\\), warunkiem odtworzenia sygnału jest, aby maksymalna częstotliwość sygnału nie przekraczała połowy częstotliwości próbkowania, \\(f_{max}<f_{s}/2\\) lub \\(f_{max}<1/{2T_{s}}\\)
 
-Załóżmy, że dany jest kod generujący sygnał harmoniczny:
+Załóżmy, że d\\(any jest kod generujący sygnał harmoniczny:
 ``` python
 import pylab as py
 import numpy as np
@@ -74,11 +83,11 @@ Jednak musisz wiedzieć jak ten wektor jest generowany i jaka jest wartość poj
 
 ## Zadania
 1. Proszę wygenerować sygnał s(t)=sin(2πt⋅1)+sin(2πt⋅3+π5) o długości 2.5 s próbkowany 100 Hz, obliczyć jego transformatę Fouriera za pomocą fft, a następnie zrekonstruować przebieg czasowy za pomocą ifft. Sygnał oryginalny i zrekonstruowany wykreślić na jednym rysunku. Uwaga: funkcja ifft zwraca wektor liczb zespolonych. Sprawdź jaka jest jego część urojona. Na wykresie rekonstrukcji przedstaw jego część rzeczywistą.
-2. Proszę kolejno wygenerować sinusoidy o długości 1s próbkowaną 32Hz i częstościach 1,10, 16 i 0 Hz. Dla tych sinusoid proszę policzyć transformaty Fouriera i wykreślić zarówno sygnały jak i wartość bezwzględne otrzymanych współczynników.
+2. Proszę kolejno wygenerować sinusoidy o długości 1s próbkowaną 32Hz i częstościach 1,10, 16 i 0 i 17 Hz. Dla tych sinusoid proszę policzyć transformaty Fouriera i wykreślić zarówno sygnały jak i wartość bezwzględne otrzymanych współczynników.
 - Jak wyglądają otrzymane wykresy?
 - Czy coś szczególnego dzieje się dla częstości 0 i 16Hz? Czy w tych skrajnych przypadkach faza sygnału ma wpływ na wynik transformaty?
 
-3. Zmodyfikuj funkcję `dft`, tak, żeby zwracała widmo w przedziale <0;4f_s> przy zachowaniu dotychczasowej częstotliwości próbkowania. Otrzymane rezultaty zinterpretuj w świetle twierdzenia o próbkowaniu.
+3. Dla danych wejściowych z zadania 2 zmodyfikuj funkcję `dft`, tak, żeby zwracała widmo w przedziale <0;4f_s> przy zachowaniu dotychczasowej częstotliwości próbkowania. Otrzymane rezultaty zinterpretuj w świetle twierdzenia o próbkowaniu.
 
 4. Z dotychczasowych rozważań o transformacie Fouriera ograniczonych w czasie sygnałów dyskretnych wynika, że w widmie reprezentowane są częstości od −FN do FN gdzie FN to częstości Nyquista. Dostępnych binów częstości jest N - tyle samo ile obserwowanych punktów sygnału.
 

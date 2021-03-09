@@ -87,7 +87,7 @@ Jednak musisz wiedzieć jak ten wektor jest generowany i jaka jest wartość poj
 1. Proszę wygenerować sygnał \\(s(t)=sin(2\pi\cdot t \cdot 1)+sin(2\pi \cdot t\cdot3+\pi/5)\\) o długościach 2.5s  próbkowany 100 Hz, obliczyć jego transformatę Fouriera za pomocą fft (\\(X=fft(s)\\)), a następnie zrekonstruować przebieg czasowy za pomocą ifft (\\(\hat(x) = ifft(X)\\)). Sygnał oryginalny i zrekonstruowany wykreślić na jednym rysunku. Uwaga: funkcja ifft zwraca wektor liczb zespolonych. Sprawdź jaka jest jego część urojona. Na wykresie rekonstrukcji przedstaw jego część rzeczywistą. Jaka jest dokładność rekonstrukcji, jeśli sygnał będzie miał długość 3s?
    Dokładność rekonstrukcji zdefiniuj jako błąd średniokwadratowy (RMSE):
    $$
-   RMSE=\sum_{i=0}^N \frac{1}{N}\cdot \sqr{(s(i)- Re(\hat(x) i))^2}
+   RMSE=\sum_{i=0}^N \frac{1}{N}\cdot \sqrt{(s(i)- Re(\hat(x) i))^2}
    $$
 2. Proszę kolejno wygenerować sinusoidy o długości 1s próbkowaną 32Hz i częstościach 0, 1,10, 16, 17, 31 Hz. Dla tych sinusoid proszę policzyć transformaty Fouriera i wykreślić zarówno sygnały jak i wartość bezwzględne otrzymanych współczynników. (dla pojedynczych sygnałów i  widma zsumowanego sygnału)
 - Jak wyglądają otrzymane wykresy?

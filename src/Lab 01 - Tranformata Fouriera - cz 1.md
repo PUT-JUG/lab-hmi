@@ -46,14 +46,14 @@ Częstotliwość Nyquista – maksymalna częstotliwość składowych widmowych 
 
 Zgodnie z twierdzeniem o próbkowaniu, przy próbkowaniu równomiernym z odstępem próbkowania \\(T_{s}\\), warunkiem odtworzenia sygnału jest, aby maksymalna częstotliwość sygnału nie przekraczała połowy częstotliwości próbkowania, \\(f_{max}<f_{s}/2\\) lub \\(f_{max}<1/{2T_{s}}\\)
 
-Załóżmy, że d\\(any jest kod generujący sygnał harmoniczny:
+Załóżmy, że dany jest kod generujący sygnał harmoniczny:
 ``` python
 import pylab as py
 import numpy as np
 from numpy.fft import rfft, rfftfreq
 
-def sin(f = 1, T = 1, Fs = 128, phi =0 ):
-	dt = 1.0/Fs
+def sin(f = 1, T = 1, fs = 128, phi =0 ):
+	dt = 1.0/fs
 	t = np.arange(0,T,dt)
 	s = np.sin(2*np.pi*f*t + phi)
 	return (s,t)	
@@ -63,17 +63,17 @@ Spróbuj wygenerować wyznaczyć transformatę Fouriera i wyświetlić ją w pos
 
 ``` python
 from scipy.fft import fft, fftfreq
-Fs = 100
+fs = 100
 T = 1
 
-(y,t) = sin(f = 10.0, T=T, Fs=Fs)
+(y,t) = sin(f = 10.0, T=T, fs=fs)
 
 N=int(Fs*T)
 
 yf = fft(y)
 xf = ......
 import matplotlib.pyplot as plt
-plt.stem(xf, np.abs(yf))
+plt.stem(xf, np.abs(yf), use_line_collection=True)
 plt.grid()
 plt.show()
 ```
@@ -84,10 +84,14 @@ xf = fftfreq(N, 1/Fs)
 Jednak musisz wiedzieć jak ten wektor jest generowany i jaka jest wartość pojedynczego kwantu częstotliwości (rozdzielczość widma)
 
 ## Zadania
-1. Proszę wygenerować sygnał \\(s(t)=sin(2\pi\cdot t \cdot 1)+sin(2\pi \cdot t\cdot3+\pi/5)\\) o długości 2.5 s próbkowany 100 Hz, obliczyć jego transformatę Fouriera za pomocą fft, a następnie zrekonstruować przebieg czasowy za pomocą ifft. Sygnał oryginalny i zrekonstruowany wykreślić na jednym rysunku. Uwaga: funkcja ifft zwraca wektor liczb zespolonych. Sprawdź jaka jest jego część urojona. Na wykresie rekonstrukcji przedstaw jego część rzeczywistą.
-2. Proszę kolejno wygenerować sinusoidy o długości 1s próbkowaną 32Hz i częstościach 1,10, 16 i 0 i 17 Hz. Dla tych sinusoid proszę policzyć transformaty Fouriera i wykreślić zarówno sygnały jak i wartość bezwzględne otrzymanych współczynników.
+1. Proszę wygenerować sygnał \\(s(t)=sin(2\pi\cdot t \cdot 1)+sin(2\pi \cdot t\cdot3+\pi/5)\\) o długościach 2.5s  próbkowany 100 Hz, obliczyć jego transformatę Fouriera za pomocą fft (\\(X=fft(s)\\)), a następnie zrekonstruować przebieg czasowy za pomocą ifft (\\(\hat(x) = ifft(X)\\)). Sygnał oryginalny i zrekonstruowany wykreślić na jednym rysunku. Uwaga: funkcja ifft zwraca wektor liczb zespolonych. Sprawdź jaka jest jego część urojona. Na wykresie rekonstrukcji przedstaw jego część rzeczywistą. Jaka jest dokładność rekonstrukcji, jeśli sygnał będzie miał długość 3s?
+   Dokładność rekonstrukcji zdefiniuj jako błąd średniokwadratowy (RMSE):
+   $$
+   RMSE=\sum_{i=0}^N \frac{1}{N}\cdot \sqr{(s(i)- Re(\hat(x) i))^2}
+   $$
+2. Proszę kolejno wygenerować sinusoidy o długości 1s próbkowaną 32Hz i częstościach 0, 1,10, 16, 17, 31 Hz. Dla tych sinusoid proszę policzyć transformaty Fouriera i wykreślić zarówno sygnały jak i wartość bezwzględne otrzymanych współczynników. (dla pojedynczych sygnałów i  widma zsumowanego sygnału)
 - Jak wyglądają otrzymane wykresy?
-- Czy coś szczególnego dzieje się dla częstości 0 i 16Hz? Czy w tych skrajnych przypadkach faza sygnału ma wpływ na wynik transformaty?
+- Czy coś szczególnego dzieje się dla częstości 0 i 16Hz, 17Hz? Czy w tych skrajnych przypadkach faza sygnału oryginalnego ma wpływ na wynik transformaty?
 
 3. Dla danych wejściowych z zadania 2 zmodyfikuj funkcję `dft`, tak, żeby zwracała widmo w przedziale <0;4f_s> przy zachowaniu dotychczasowej częstotliwości próbkowania. Otrzymane rezultaty zinterpretuj w świetle twierdzenia o próbkowaniu.
 
@@ -99,7 +103,7 @@ Jednak musisz wiedzieć jak ten wektor jest generowany i jaka jest wartość poj
 - jaka jest rozdzielczość częstotliwościowa (odstęp między binami częstotliwości)  dla 10 s sygnału próbkowanego 10Hz?
 - jaka jest rozdzielczość częstotliwościowa (odstęp między binami częstotliwości)  dla 100 s sygnału próbkowanego 10Hz?
 
-5. Wczytaj dane z pliku zawierającego [sygnał EMG](https://chmura.put.poznan.pl/s/G285gnQVuCnfQAx/download?path=%2FData-HDF5&files=emg_gestures-12-repeats_short-2018-04-12-14-05-19-091.hdf5). Częstotliwość próbkowania sygnału wynosi 5120H, a plik zawiera rejestrację z 24 kanałów EMG z mięśni przedramienia podczas wykonywania różnych gestów dłonią. W dalszej analizie wykorzystaj kanał `EMG-15`
+5. Wczytaj dane z pliku zawierającego [sygnał EMG](https://chmura.put.poznan.pl/s/G285gnQVuCnfQAx/download?path=%2FData-HDF5&files=emg_gestures-12-repeats_short-2018-04-12-14-05-19-091.hdf5). Częstotliwość próbkowania sygnału wynosi 5120Hz, a plik zawiera rejestrację z 24 kanałów EMG z mięśni przedramienia podczas wykonywania różnych gestów dłonią. W dalszej analizie wykorzystaj kanał `EMG_15`
    - Zidentyfikuj częstotliwości 3 najsilniejszych składowych o widmie o charakterze impulsowym.
    - Spróbuj dokonać 10 krotnego downsamplingu (wybierając co 10 próbkę sygnału), nałóż widmo oryginalne i spróbkowane - spórbuj wyjaśnić obserwowane różnice.
    

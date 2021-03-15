@@ -26,13 +26,13 @@ $$
 
 Wykreśl i przeanalizuj widma następujących sygnałów:
 $$
-\begin{array}{lcl}
+\begin{eqnarray}{lcl}
 y_1 &=& sin(2\cdot \pi \cdot f_1 \cdot t)\\
 y_2 &=& sin(2\cdot \pi\cdot f_2\cdot t)\\
 y_3 &=& y_1\cdot  y_2\\
 y_4 &=& pulse(t, PW=0.5)\\
 y_5 &=& y_1\cdot pulse(t, PW=0.5)
-\end{array}
+\end{eqnarray}
 $$
 ``` python
 import pylab as py

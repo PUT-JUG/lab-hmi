@@ -119,7 +119,7 @@ for T in np.linspace(1,1.2,4):
 - dla sygnału będącego suma dwóch powyższych
 
 
-2. Stosując okno prostokątne,Blackmanna, Hanna i Hanninga, wyznacz sumę sygnału o częstotliwości $f$=10.2Hz z pojedynczymi składowymi o częstotliwości $f_2$ wygenerowanej przez funkcję `np.linspace(11.4,15.5,9)`. W pojedynczym porównaniu porównaj sygnał o wyznaczenia widma wykorzystaj funkcję `spect_dB`. W analizie najłatwiej będzie porównywać dane, gdy na jednym wykresie umieścisz dane dla pojedynczej kombinacji $f$ i $f_2$ i wszystkich okien. Przyjmij, że częstotliwość próbkowania f_s=100Hz a okres obserwacji T=1s
+2. Stosując okno prostokątne,Blackmanna, Hanna i Hanninga, wyznacz sumę sygnału o częstotliwości \\(f\\)=10.2Hz z pojedynczymi składowymi o częstotliwości \\(f_2\\) wygenerowanej przez funkcję `np.linspace(11.4,15.5,9)`. W pojedynczym porównaniu porównaj sygnał o wyznaczenia widma wykorzystaj funkcję `spect_dB`. W analizie najłatwiej będzie porównywać dane, gdy na jednym wykresie umieścisz dane dla pojedynczej kombinacji \\(f\\) i \\(f_2\\) i wszystkich okien. Przyjmij, że częstotliwość próbkowania \\(f_s\\)=100Hz a okres obserwacji T=1s
    
 3. Spróbuj odczytać parametry [sygnału](_resources/lab_2/test_signal_z_3.hdf) częstotliwość próbkowania, długość w [s] oraz liczbę składowych  harmonicznych oraz ich częstotliwości, wiedząc że sygnał zawiera <7 składowych, a dane umieszczone są w Dataframie, gdzie indeksem jest czas
    

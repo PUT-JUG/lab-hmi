@@ -26,7 +26,7 @@ $$
 
 Wykreśl i przeanalizuj widma następujących sygnałów:
 $$
-\begin{eqnarray}{lcl}
+\begin{eqnarray}
 y_1 &=& sin(2\cdot \pi \cdot f_1 \cdot t)\\
 y_2 &=& sin(2\cdot \pi\cdot f_2\cdot t)\\
 y_3 &=& y_1\cdot  y_2\\

@@ -64,7 +64,7 @@ f_2 = 10
 
 (y_1,t) = sin(f = 100.0, T=T, Fs=Fs)
 y_2 = np.sin(2*np.pi*f_2*t)
-y_3 = y_1*y2
+y_3 = y_1*y_2
 y_4 = signal.square(2 * np.pi * t/T,0.5)
 y_5 = y_1*y_4
 ```
@@ -93,9 +93,9 @@ Jak to już zaznaczono powyżej, wyznaczenie transformaty Fouriera sygnału o sk
 Przeanalizuje wynik działania następującego skryptu:
 ``` python
 def spect_dB(s, N_fft, F_samp):
-    S = rfft(s,N_fft)
+    S = fft(s,N_fft)
     S_dB = 20 * np.log10(np.abs(S))
-    F = rfftfreq(N_fft, 1.0/F_samp)
+    F = fftfreq(N_fft, 1.0/F_samp)
     return (S_dB,F)
 
 fs=100
@@ -106,7 +106,7 @@ plt.figure()
 k=1
 for T in np.linspace(1,1.2,4):
     t = np.arange(0,T,1/fs)
-    window = ss.windows.hann(len(t))#
+    window = signal.windows.hann(len(t))#
     s = np.sin(2*np.pi*f*t)
     s_wnd = s* window
     plt.subplot(4,1,k)

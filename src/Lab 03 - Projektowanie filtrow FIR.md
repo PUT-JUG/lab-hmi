@@ -5,7 +5,7 @@
 ## Wstęp
 
 ### Filtry FIR (Finite Impulse Response)
-Jest to klasa filtrów nierekursywnych, czyli nie posiadającycych sprzężeń zwrotnych. Oznacza to że odpowiedź filtru wyznaczana jest wyłącznie jako kombinacja liniowa pewnej ilości próbek sygnału wejściowego.
+Jest to klasa filtrów nierekursywnych, czyli nie posiadających sprzężeń zwrotnych. Oznacza to że odpowiedź filtru wyznaczana jest wyłącznie jako kombinacja liniowa pewnej ilości próbek sygnału wejściowego.
 $$
 y(n)=\sum^{\infty}_{m=-\infty}h(m)x(n-m)
 $$
@@ -59,8 +59,8 @@ Uwaga: Dla filtrów wyciętych za pomocą okna prostokątnego można wyłącznie
 
 Uwaga: Dla filtrów wyciętych za pomocą okna Hanninga można wyłącznie regulować stromość charakterystyki w paśmie przejściowym.
 
-### Okno Kaisera
-okno w odróźnieniu od poprzednio wspomnianych umożliwia na dostosowanie tłumienia w paśmie zaporowym.
+#### Okno Kaisera
+[Okno Kaisera](https://en.wikipedia.org/wiki/Kaiser_window) w odróżnieniu od poprzednio wspomnianych umożliwia na dostosowanie tłumienia w paśmie zaporowym.
 Okno dane jest wzorem:
 
 \\(w(n) = I_0\left( \beta \sqrt{1-\frac{4n^2}{(M-1)^2}} \right)/I_0(\beta)\\)
@@ -68,22 +68,24 @@ z
 
 \\(\quad -\frac{M-1}{2} \leq n \leq \frac{M-1}{2},\\)
 gdzie \(I_0\) jest zmodyfikowaną funkcją Bessela.
+
 W Pythonie okno tworzone jest za pomocą:
 
 ``` python
 window = signal.kaiser(N, beta)
 ```
 
-gdzie `N` jets liczbą próbek a `beta` jest parametrem kształtu określającym pewnien balans między szerokością listka głównego a tłumieniem dla listów bocznych.
+gdzie `N` jest liczbą próbek a `beta` jest parametrem kształtu określającym pewien kompromis między szerokością listka głównego a tłumieniem dla listów bocznych.
 
 Do wyznaczenia współczynnika beta, gdzie zadane jest tłumienie `ripple` (w dB) zarówno w paśmie przepustowym jak i zaporowym oraz szerokości pasma przejściowego (`width`) wyrażonego w pulsacji znormalizowanej (width=1 odpowiada szerokości pasma przejściowego `fs/2`) można wykorzystać funkcję:
 ``` python
 scipy.signal.kaiserord(ripple,width)
 ```
-Więcej na ten temat mozesz znaleźć w [dokumentacji](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.kaiserord.html)
+Więcej na ten temat możesz znaleźć w [dokumentacji](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.kaiserord.html)
+
 ### Metody projektowania filtrów
 Metody projektowania filtrów zostały przedstawione w materiałach z wykładów. Tutaj przedstawiono wyłączenie przykłady realizacji filtrów w języku Python.
-Zwróć uwagę na użycie funkcji `firwin` oraz `lfilter`. Przeanalizuj również działanie funkcji `freqz` umożliwiającej wyświetlenie charakterystyki amplitudowej. Do uruchomienia skryptu wykorzystaj plik [distorted.npy](./_resources/lab_03/distorted.npy)
+Zwróć uwagę na użycie funkcji `firwin` oraz `lfilter`. Przeanalizuj również działanie funkcji `freqz` umożliwiającej wyświetlenie charakterystyki amplitudowej. Do uruchomienia skryptu wykorzystaj plik [distorted.npy](https://chmura.put.poznan.pl/s/cASE9TVojr2I6CK)
 
 ``` python
 
@@ -217,13 +219,14 @@ matplotlib.rcParams['figure.figsize'] = (8, 4)
 
 
 n = 1000
-t = np.arange(n) / 48000
+fs = 4800
+t = np.arange(n) / fs
 fr = np.array([500, 1000, 1500, 2000, 2500]).reshape(-1, 1)
 x = np.sum(np.sin(2 * np.pi * t * fr), axis=0)
 x = x + 0.05 * np.random.randn(len(x))
 x = x / np.max(np.abs(x))
 
-h = sig.firwin(801, 1250, window='hamming', pass_zero='highpass', fs=48000)
+h = sig.firwin2(801, [0, 1250, 1300, fs/2], [1,1,0,0], window='hamming', fs=fs)
 y = sig.lfilter(h, 1, x)
 
 fig, ax = plt.subplots(2, sharex=True, tight_layout=True, figsize=(8, 5))
@@ -242,10 +245,10 @@ plt.show()
 ## Zadania
 1. Dla sygnału fs=48kHz, zaprojektuj 4 filtry o długości N=101 próbek z oknem Hamminga: górno przepustowy (fp=3kHz), dolno-przepustowy (fp=3kHz), pasmowo przepustowy (1-3kHz), pasmowo zaporowy (1-3kHz). Wyświetl charakterystyki fazowe oraz odpowiedzi impulsowe. 
 
-2. Zakładając, że \\(T_p\\)=2ms, a okres obseracji wynosi T=2s przygotować wektor sygnału testowego o postaci:
+2. Zakładając, że \\(f_s\\)=500Hz, a okres obseracji wynosi T=2s przygotować wektor sygnału testowego o postaci:
 
 $$
-x(nT_p)=sin(3\cdot 2\pi\cdot nT_p)+cos(10\cdot 2\pi\cdot nT_p)+cos(25\cdot 2\pi\cdot nT_p)+sin(35\cdot 2\pi\cdot nT_p)+sin(50\cdot 2\pi\cdot nT_p)+sin(100\cdot 2\pi\cdot nT_p)
+x(t)=sin(3\cdot 2\pi\cdot t)+cos(10\cdot 2\pi\cdot t)+cos(25\cdot 2\pi\cdot t)+sin(35\cdot 2\pi\cdot t)+sin(50\cdot 2\pi\cdot t)+sin(100\cdot 2\pi\cdot t)
 $$
 
 3. Zaprojektować filtr dolnoprzepustowy nierekursywny, który umożliwi stłumienie składowych 50 i 100Hz. Dla okna Kaisera przyjąć, że tłumienie w paśmie zaporowym nie powinno być mniejsze niż  55dB, zaś oscylacje w paśmie przepustowym nie powinny przekraczać 0.1%. Szerokość pasma przejściowego ustalić na 5Hz. Do projektowania wykorzystać metodę `firwin` oraz okno Kaisera. Po zaprojektowaniu przefiltruj sygnał i wyznacz opóźnienie filtra.

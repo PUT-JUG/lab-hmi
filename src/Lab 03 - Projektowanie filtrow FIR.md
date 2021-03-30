@@ -253,7 +253,7 @@ $$
 
 3. Zaprojektować filtr dolnoprzepustowy nierekursywny, który umożliwi stłumienie składowych 50 i 100Hz. Dla okna Kaisera przyjąć, że tłumienie w paśmie zaporowym nie powinno być mniejsze niż  55dB, zaś oscylacje w paśmie przepustowym nie powinny przekraczać 0.1%. Szerokość pasma przejściowego ustalić na 5Hz. Do projektowania wykorzystać metodę `firwin` oraz okno Kaisera. Po zaprojektowaniu przefiltruj sygnał i wyznacz opóźnienie filtra.
    
-4. Zaprojektuj filtr pasmowo-zaporowy, o szerokości pasma 10Hz dla składowej 25Hz i 50Hz, załóż że pasmo zaporowe ma szerokość 1Hz, a pasmo przejściowe szerokośc taką jak w pkt 3. Wybierz metodę `firwin2` oraz założenia projektowe analogiczne do tych z pkt 3.
+4. Zaprojektuj filtr pasmowo-zaporowy dla składowej 25Hz i 50Hz, załóż że pasmo zaporowe ma szerokość 1Hz, a pasmo przejściowe szerokośc taką jak w pkt 3. Wybierz metodę `firwin2` oraz założenia projektowe analogiczne do tych z pkt 3.
    
 5. Zaprojektuj filtry z zadania 3 i 4 metodą najmniejszych kwadratów (`firls`). Jakie jest najsłabsze tłumienie w paśmie zaporowym? 
    

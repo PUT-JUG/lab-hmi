@@ -33,7 +33,8 @@ Poniżej przedstawiono procedurę projektowania filtrów:
 3. Zaprojektowanie transmitancji filtra
 4. Sprawdzenie właściwości zaprojektowanego układu.
 
-W Pythonie do oszacowaniu rzaeu filtrai zaprojektowania transmitancji  można wykorzystać następujące funkcje:
+W Pythonie do oszacowaniu rzędu filtra i zaprojektowania transmitancji  można wykorzystać następujące funkcje:
+
 |              | parametry projektowe       | wyznaczenie rzędu                              | wyznaczenie transmitancji                             |
 |--------------|----------------------------|------------------------------------------------|-------------------------------------------------------|
 | Butterowth   | N, fn                      | N, fn = signal.buttord(fp, fz, Rp, Rs, fs=fs)  | b, a = signal.butter(N, fn, btype='low', fs=fs)       |
@@ -242,7 +243,7 @@ plt.show()
 ## Zadania
 1. Dla sygnału fs=48kHz, zaprojektuj 4 filtry Czebyszewa 1  rzędu 4: górno przepustowy (fp=3kHz), dolno-przepustowy (fp=3kHz), pasmowo przepustowy (1-3kHz), pasmowo zaporowy (1-3kHz), gdzie tłumienie w paśmie przepustowym nie jest większe niż 1dB. Wyświetl charakterystyki fazowe oraz odpowiedzi impulsowe. 
 
-2. Zakładając, że \\(f_s\\)=500Hz, a okres obseracji wynosi T=2s przygotować wektor sygnału testowego o postaci:
+2. Zakładając, że \\(f_s\\)=500Hz, a okres obseracji wynosi T=20s przygotować wektor sygnału testowego o postaci:
 
 $$
 x(t)=sin(3\cdot 2\pi\cdot t)+cos(10\cdot 2\pi\cdot t)+cos(25\cdot 2\pi\cdot t)+sin(35\cdot 2\pi\cdot t)+sin(50\cdot 2\pi\cdot t)+sin(100\cdot 2\pi\cdot t)
@@ -250,13 +251,14 @@ $$
 
 3. Zaprojektować filtr dolnoprzepustowy rekursywny Czebyszewa II, który umożliwi stłumienie składowych 50 i 100Hz. Przyjąć, że tłumienie w paśmie zaporowym nie powinno być mniejsze niż 55dB, zaś oscylacje w paśmie przepustowym nie powinny przekraczać 0.1%. Szerokość pasma przejściowego ustalić na 5Hz. Po zaprojektowaniu przefiltruj sygnał i wyznacz opóźnienie filtra dla składowych w paśmie przepustowym.
    
-4. Zaprojektuj filtr Eliptyczny pasmowo-zaporowy dla składowej 25Hz, załóż, że pasmo zaporowe ma szerokość 1Hz, a pasmo przejściowe szerokośc taką jak w pkt 3. Określ jakie jest efektywne tłumienie składowej 25Hz sygnału oraz czas ustalania odpowiedzi. 
+4. Zaprojektuj filtr Eliptyczny pasmowo-zaporowy dla składowej 25Hz, załóż, że pasmo zaporowe ma szerokość 1Hz, a pasmo przejściowe szerokośc taką jak w pkt 3. Określ jakie jest efektywne tłumienie składowej 25Hz sygnału oraz czas ustalania odpowiedzi (pamiętaj, żeby sygnał miał długość min 20s). 
+   
 5. Dokonaj porównania zachowania filtra z zadania 4 z filtrem pasmowo-zaporowym z FIR z zadania 6 z [lab nr 3](http://jug.put.poznan.pl/lab-icmwr/Lab%2003%20-%20Projektowanie%20filtrow%20FIR.html)?
    - Czy czas ustalania się odpowiedzi tego filtra jest dłuższy niż filtra IIR?
    - Czy czas pojawienia się odpowiedzi tego filtra jest dłuższy niż filtra IIR? (jako czas pojawienia się odpowiedzi dla filtra FIR przyjmij moment pojawienia się sygnału na wyjściu)
    - Dla ktorego z filtrów opóźnienie fazowe składowej 25Hz jest większe?
    
    
-6. Określ jaka jest minimalna szerokość pasma przejściowego filtra 25Hz z zad 4, która spowoduje, że stanie się on niestabilny.
+6. Określ jaka jest minimalna szerokość pasma przejściowego filtra 25Hz z zad 4 w wersji ze współczynnikami wielomianu transmitancji (nie w wersji SOS), która spowoduje, że przy wymuszeniu składową 25Hz odpowiedź będzie dążyła do nieskończoności, obserwacje prowadż w czasie 100s
 
 Autorzy: *Piotr Kaczmarek*

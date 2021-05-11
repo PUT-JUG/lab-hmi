@@ -21,7 +21,7 @@ classifiers = [
 
 for name, clf in zip(names, classifiers):
       scores = cross_val_score(clf, train_features, train_labels, cv=5,  scoring='precision_macro')
-      print('precision mean:', np.mean(scores), "std: ", np.std(scores))
+      print(name, ', precision mean:', np.mean(scores), "std: ", np.std(scores))
 ```
 5. Porównaj otrzymane wyniki z wynikami klasyfikacji sygnału [testowego](https://chmura.put.poznan.pl/s/7g3b2p7tljJJaNc) zarejestrowanego w tej samej sesji. Do tego celu wytrenuj klasyfikator na danych uczących a następnie dokonaj predykcji dla zbioru testowego. Do oceny możesz użyć np. funkcji:
 ``` python
@@ -29,11 +29,11 @@ metrics.precision_score(predictions, test_labels, average='macro')
 ```
 pamiętaj o tym, że zastosowany sposób uśredniania (`macro`) jest związany z zróżnicowaną liczebnością grup
 
-6. Dla wyników z zad 6, sprawdź macierz pomyłek i zastanów które gesty są najczęściej mylone ze sobą, spróbuj wyjaśnić dlaczego?
+6. Dla wyników z zad. 5, sprawdź macierz pomyłek i zastanów które gesty są najczęściej mylone ze sobą, spróbuj wyjaśnić dlaczego?
 
 7. (*) Stosując k-krotną walidację, spróbuj zmodyfikować parametry klasyfikatora żeby zwiększyć jego dokładność. Pamiętaj żeby do oceny postępów nie używać zbioru testowego
    
-8.  Pobierz sygnał [walidacyjny](https://chmura.put.poznan.pl/s/wuu8IZDRHxUrgXX) i wyznacz jego cechy. Wygeneruj predykcję gestów dla chwil czasu danych [indeksami](https://chmura.put.poznan.pl/s/3S2QorjXu0tUM0h). Pamiętaj, że jeśli nie będziesz realizował zadania 8* nie zmieniać wartości to żeby nie zmieniać wartości `random_state` klasyfikatora. Do realizacji wybierz klasyfikator o najlepszych właściwościach generalizacyjnych, możesz go przeuczyć zgodnie ze swoimi umiejętnościami. Otrzymany plik z predykcją etykiet zapisz do pliku hdf. Plik powinien mieć indeks odpowiadający indeksowi z pobranego pliku z indeksami oraz kolumnę `predictions`. 
+8.  Pobierz sygnał [walidacyjny](https://chmura.put.poznan.pl/s/wuu8IZDRHxUrgXX) i wyznacz jego cechy. Wygeneruj predykcję gestów dla chwil czasu danych [indeksami](https://chmura.put.poznan.pl/s/3S2QorjXu0tUM0h). Pamiętaj, że jeśli nie będziesz realizował zadania 7* nie zmieniać wartości to żeby nie zmieniać wartości `random_state` klasyfikatora. Do realizacji wybierz klasyfikator o najlepszych właściwościach generalizacyjnych, możesz go przeuczyć zgodnie ze swoimi umiejętnościami. Otrzymany plik z predykcją etykiet zapisz do pliku hdf. Plik powinien mieć indeks odpowiadający indeksowi z pobranego pliku z indeksami oraz kolumnę `predictions`. 
 9.  Jako zadanie domowe prześlij plik źródłowy realizujący uczenie oraz plik `predictions.hdf` zawierający wyniki klasyfikacji dla zbioru walidacyjnego.
 
 

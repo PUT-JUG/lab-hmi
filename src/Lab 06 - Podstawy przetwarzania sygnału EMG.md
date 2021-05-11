@@ -61,7 +61,7 @@ $$
 5. Zastanów się i sprawdź, jak na wartości współczynników wpłynie zastosowanie filtru artefaktów ruchowych i składowej sieciowej?
 
 6. (*dla chętnych*)  Stosując metodę k-średnich i współczynniki shiluette, spróbuj dokonać nienadzorowanej klastryzacji zarejestrowanych danych, wiedząc, że identyfikator wykonywanego gestu znajduje się w kolumnie `TRAJ_GT`. Pomiń wszystkie gesty, które mają wartość -1. Wyniki wyświetl w postaci macierzy pomyłek.
-   jako pomoc, moesz wykozrystać np. [kod](https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_assumptions.html#sphx-glr-auto-examples-cluster-plot-kmeans-assumptions-py). Macierz konfuzji powinna być zwracana jako tablica `numpy.ndarray`
+   jako pomoc, możesz wykorzystać np. [kod](https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_assumptions.html#sphx-glr-auto-examples-cluster-plot-kmeans-assumptions-py). Macierz konfuzji powinna być zwracana jako tablica `numpy.ndarray`
    ``` python
    window = 500/1000*fs
    stride = 100/1000*fs

@@ -29,7 +29,7 @@ gdzie `start_before`, `start_after` określają liczbę próbek, która powinna 
 
 ## Zadanie
 1. Dany jest [zbiór danych](https://chmura.put.poznan.pl/s/iuvJ6vRXAeyiEOh) zawierający zbiór treningowy oraz testowy w wersji surowej i po preprocessingu (filtracji)
-2. Wyznacz jego cechy RMS i ZC oraz skojarzone z nimi etykiety ('TRAJ_GT')
+2. Wyznacz jego cechy RMS i ZC oraz skojarzone z nimi etykiety ('TRAJ_GT') dla ukłądu złożonego z 8 elektrod `EMG_9` - `EMG_16`.
 3. Przyjmij, że w zadaniu klasyfikacji przetwarzane są wyłącznie próbki, dla których etykieta ma wartość >=0
 4. Zakładając, ze zbiór uczący jest wykorzystywany w procesie doboru hiperperametrów modelu oraz wyboru cech, spróbuj wyznaczyć precyzję, oraz niepewność jej szacowania. Dla otrzymanych wyników określ, które ze zmian dają istotną statystycznie poprawę, oraz, który z klasyfikatorów jest najlepszy. Test przeprowadź używając testu one-way Anova. Uwzględnij następujące sytuacje:
    - wprowadzenie sygnału po filtracji (sygnały z postfixem `_pre`) oznacz go jako `raw` i `filtered`

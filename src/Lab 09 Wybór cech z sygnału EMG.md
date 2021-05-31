@@ -5,6 +5,18 @@
 ## Wprowadzenie
 Dzisiejsze zajęcia dotyczą problemu wyboru cech sygnału EMG. Metody były omawiane na wykładzie. W praktyce często używa się metod owijających, których celem jest wybór zestawu cech maksymalizującego dokładność modelu. Z uwagi na dużą złożoność obliczeniową, zajmiemy się metodami wybór cech opartymi o model lasu drzew decyzyjnych.
 
+Poniżej na 3 kolejnych wykresach możesz zobaczyć jakie są wyniki klasyfikacji (z kroswalidacją) dla zbioru,którym dzisiaj będziesz się zajmował,w przypadku, gdy używa się wszystkie cechu (984 -zbiór oznaczony jako `all` oraz zredukowany zestaw cech `Hudgkin`, `Du`, `RMS`).
+
+Porównanie kilku klasyfikatorów i cech:
+![porównanie](./_images/lab09/precision.png)
+
+Porównanie skuteczności klasyfikacji dla 24 kanałów:
+![klasyfikacja24ch](./_images/lab09/precision_24chn.png)
+
+Porównanie skuteczności klasyfikacji dla 8 kanałów (nr 9-16):
+![klasyfikacja24ch](./_images/lab09/precision_8chn_2band.png)
+
+
 ## Zadanie
 1. Dany jest [zbiór danych](https://chmura.put.poznan.pl/s/kYXVEkHWbx14HBB) zawierający dwa zbiory danych (każdy zbiór składa się ze zbioru uczącego i testowego). Zbiory zawierają po 984, wyznaczone cechy. Nazwy kolumn zawierających cechy mają formę: `input_(NR)_(cecha)_(kanal)` np.: `input_456_MYOP_1` jest cechą `MYOP` wyznaczoną dla kanału 1.
 2. Uruchom następujący kod umożliwiający określenie istotnych cech:

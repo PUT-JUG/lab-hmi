@@ -334,7 +334,7 @@ for i_win, win in enumerate(window_lengths):
         window='boxcar',
         fmin=fmin, fmax=fmax, verbose=False)
     # define a bandwidth of 1 Hz around stimfreq for SNR computation
-    bin_width = windowed_freqs[1] - windowed_freqs[0]Rozwią
+    bin_width = windowed_freqs[1] - windowed_freqs[0]
     skip_neighbor_freqs = \
         round((stim_bandwidth / 2) / bin_width - bin_width / 2. - .5) if (
             bin_width < stim_bandwidth) else 0

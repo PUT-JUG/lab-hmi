@@ -220,6 +220,9 @@ Poniższsy kod dotyczy częstotliwości 12Hz i umożliwia wyznaczenie binu częs
 # define stimulation frequency
 stim_freq = 12.
 # find index of frequency bin closest to stimulation frequency
+i_trial_12hz = np.where(epochs.events[:, 2] == event_id['12hz'])[0]
+i_trial_15hz = np.where(epochs.events[:, 2] == event_id['15hz'])[0]
+
 i_bin_12hz = np.argmin(abs(freqs - stim_freq))
 # could be updated to support multiple frequencies
 

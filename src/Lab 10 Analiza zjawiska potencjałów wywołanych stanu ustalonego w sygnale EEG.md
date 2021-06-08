@@ -25,7 +25,7 @@ Zwizualizujemy zarówno gęstość widmową mocy (PSD), jak i widmo SNR danych z
 W przetwarzaniu wykorzystywany będzie moduł `nme`
 W celu zainstalowania potrzebnych modułów użyj `pip`
 ``` python
-pip install nme
+pip install mne
 pip install ipywidgets
 jupyter nbextension enable --py widgetsnbextension
 ```
@@ -69,8 +69,8 @@ raw.filter(l_freq=0.1, h_freq=None, fir_design='firwin', verbose=False)
 
 # Construct epochs
 event_id = {
-    '12hz': 155,
-    '15hz': 255
+    '12hz': 255,
+    '15hz': 155
 }
 events, _ = mne.events_from_annotations(raw, verbose=False)
 raw.info["events"] = events
@@ -185,7 +185,7 @@ W aktualnym przykładzie porównywana jest moc w każdym binie ze średnią moc�
 ## Wizualizacja PSD i SNR
 Wizualizacja przedstawia wyniki z naniesionym obszarem ograniczonym przez wartość +/- std wyznaczone dla wszystkich epok.
 ``` python
-fig, axes = plt.subplots(2, 1, sharex='all', shRozwiąarey='none', figsize=(8, 5))
+fig, axes = plt.subplots(2, 1, sharex='all', sharey='none', figsize=(8, 5))
 freq_range = range(np.where(np.floor(freqs) == 1.)[0][0],
                    np.where(np.ceil(freqs) == fmax - 1)[0][0])
 

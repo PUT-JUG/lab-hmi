@@ -26,13 +26,23 @@ $$
 
 Wykreśl i przeanalizuj widma następujących sygnałów:
 $$
-\begin{array}{lcl}
-y_1 &=& sin(2\cdot \pi \cdot f_1 \cdot t)\\
-y_2 &=& sin(2\cdot \pi\cdot f_2\cdot t)\\
-y_3 &=& y_1\cdot  y_2\\
-y_4 &=& pulse(t, PW=0.5)\\
-y_5 &=& y_1\cdot pulse(t, PW=0.5)
-\end{array}
+y_1 = sin(2\cdot \pi \cdot f_1 \cdot t)\\
+$$
+
+$$
+y_2 = sin(2\cdot \pi\cdot f_2\cdot t)\\
+$$
+
+$$
+y_3 = y_1\cdot  y_2\\
+$$
+
+$$
+y_4 = pulse(t, PW=0.5)\\
+$$
+
+$$
+y_5 = y_1\cdot pulse(t, PW=0.5)
 $$
 ``` python
 import pylab as py
@@ -54,7 +64,7 @@ f_2 = 10
 
 (y_1,t) = sin(f = 100.0, T=T, Fs=Fs)
 y_2 = np.sin(2*np.pi*f_2*t)
-y_3 = y_1*y2
+y_3 = y_1*y_2
 y_4 = signal.square(2 * np.pi * t/T,0.5)
 y_5 = y_1*y_4
 ```
@@ -83,9 +93,9 @@ Jak to już zaznaczono powyżej, wyznaczenie transformaty Fouriera sygnału o sk
 Przeanalizuje wynik działania następującego skryptu:
 ``` python
 def spect_dB(s, N_fft, F_samp):
-    S = rfft(s,N_fft)
+    S = fft(s,N_fft)
     S_dB = 20 * np.log10(np.abs(S))
-    F = rfftfreq(N_fft, 1.0/F_samp)
+    F = fftfreq(N_fft, 1.0/F_samp)
     return (S_dB,F)
 
 fs=100
@@ -96,7 +106,7 @@ plt.figure()
 k=1
 for T in np.linspace(1,1.2,4):
     t = np.arange(0,T,1/fs)
-    window = ss.windows.hann(len(t))#
+    window = signal.windows.hann(len(t))#
     s = np.sin(2*np.pi*f*t)
     s_wnd = s* window
     plt.subplot(4,1,k)
@@ -118,10 +128,21 @@ for T in np.linspace(1,1.2,4):
 - dla sygnału sinusoidalnego o dł. 0.1s i częstości 22Hz próbkowanego 100 Hz
 - dla sygnału będącego suma dwóch powyższych
 
-
-1. Stosując okno prostokątne,Blackmanna, Hanna i Hanninga, wyznacz sumę sygnału o częstotliwości \\(f$\\)10.2Hz z pojedynczymi składowymi o częstotliwości \\(f_2\\) wygenerowanej przez funkcję `np.linspace(11.4,15.5,9)`. W pojedynczym porównaniu porównaj sygnał o wyznaczenia widma wykorzystaj funkcję `spect_dB`. W analizie najłatwiej będzie porównywać dane, gdy na jednym wykresie umieścisz dane dla pojedynczej kombinacji $f$ i $f_2$ i wszystkich okien. Przyjmij, że częstotliwość próbkowania f_s=100Hz a okres obserwacji T=1s
+2. Stosując okno prostokątne,Blackmanna, Hanna i Hanninga, wyznacz sumę sygnału o częstotliwości \\(f\\)=10.2Hz z pojedynczymi składowymi o częstotliwości \\(f_2\\) wygenerowanej przez funkcję `np.linspace(11.4,15.5,9)`. W pojedynczym porównaniu porównaj sygnał o wyznaczenia widma wykorzystaj funkcję `spect_dB`. W analizie najłatwiej będzie porównywać dane, gdy na jednym wykresie umieścisz dane dla pojedynczej kombinacji \\(f\\) i \\(f_2\\) i wszystkich okien. Przyjmij, że częstotliwość próbkowania \\(f_s\\)=100Hz a okres obserwacji T=1s
    
-2. Spróbuj odczytać parametry [sygnału](_resources/lab_2/test_signal_z_3.hdf) częstotliwość próbkowania, długość w [s] oraz liczbę składowych  harmonicznych oraz ich częstotliwości, wiedząc że sygnał zawiera <7 składowych, a dane umieszczone są w Dataframie, gdzie indeksem jest czas
+3. Spróbuj odczytać parametry [sygnału](_resources/lab_2/test_signal_z_3.hdf) częstotliwość próbkowania, długość w [s] oraz liczbę składowych  harmonicznych oraz ich częstotliwości, wiedząc że sygnał zawiera <7 składowych, a dane umieszczone są w Dataframie, gdzie indeksem jest czas
+
+4. Spróbuj stworzyć prosty filtr, który z widma sygnału wytnie skłądową 50Hz (pamiętaj że wycięcie skłądowej z widma oznacza usunięcie skłądowej o częstotliwości 50Hz i fs-50Hz). Przygotuj następujący sygnał syntetyczny:
+$$
+y = sin(2\cdot \pi \cdot 10 \cdot t) + 0.5 \cdot sin(2\cdot \pi \cdot 45 \cdot t) + 2 \cdot sin(2\cdot \pi \cdot 50 \cdot t)
+$$
+gdzie częstotliwość próbkowania fs = 500Hz
+Filtrację wykonaj dla dwóch sytuacji:
+- dla okresu obserwacji 1s
+- dla okresu obserwacji 1.11s
+W celu porównania efektów filtracji nałóż na siebie sygnał syntetyczny bez skłądowej 50Hz oraz sygnał przefiltrowany. Możesz również wyświetlić różnicę tych sygnałów. 
+Obserwacje zapamiętaj, będą potrzebne na kolejnych zajęciach.
+
    
 
 

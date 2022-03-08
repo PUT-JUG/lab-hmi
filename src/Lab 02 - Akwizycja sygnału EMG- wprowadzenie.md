@@ -17,7 +17,7 @@ trigno_sensors.add_sensors(sensors_mode='ORIENTATION', sensors_ids=(4,), sensors
 ```
 
 `class  TrignoAdapter.add_sensor(sensor_mode, sensor_ids, sensor_labels, host)`
-``
+```
     sensors_mode : str
                Rodzaj sensora do odczytu. (tj. 'ORIENTATION' lub 'EMG')
     sensors_ids : tuple
@@ -26,7 +26,7 @@ trigno_sensors.add_sensors(sensors_mode='ORIENTATION', sensors_ids=(4,), sensors
                Etykiety opisujące moduły w danych wyjściowych (kolumna 'Sensor_id') , np. ('ORIENTATION1', 'ORIENTATION2',).
     host : str
                 Adres IP serwera Delsys Trigno Controll Utility 
-
+```
 #### Akwizycja danych
 Dane odczytywane z modułu sa buforowane i dostępne na żądanie. Poniższy kod odczytuje zgromadzone dane co 1s.
 

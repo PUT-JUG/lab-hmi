@@ -79,7 +79,7 @@ $$
 $$
 Wygeneruj widmo sygnału, którego częstotliwość nie jest dokładnie reprezentowany w widmie. Możesz np. nieznacznie skrócić okres obserwacji sygnałów y_1 i y_2 (np. do 0.98s). Co się zmieni w widmie sygnałów?
 Obserwowane efekt ujawnia rzeczywisty efekt wyznaczania transformaty fouriera sygnału o skończonej długości - sygnał ten jest wycinany za pomocą okna prostokątnego a co za tym idzie w widmie widoczny jest efekt splotu sygnału z oknem prostokątnym.
-W przypadku gdy długość sygnału zawiera dokłądnie całkowitą liczbą okresów sygnału, efekt ten nie jest obserwowany, ponieważ funkcja \\(sinc(x)\\) próbkowana jest w miejscach zerowych, natomiast w innym przypadku efekt ten zawsze będzie się ujawniał (wystarczy dodać/usunąć nawet pojedynczą próbkę sygnału)
+W przypadku gdy długość sygnału zawiera dokładnie całkowitą liczbą okresów sygnału, efekt ten nie jest obserwowany, ponieważ funkcja \\(sinc(x)\\) próbkowana jest w miejscach zerowych, natomiast w innym przypadku efekt ten zawsze będzie się ujawniał (wystarczy dodać/usunąć nawet pojedynczą próbkę sygnału)
 
 ### Zwiększanie rozdzielczości sygnału - zero padding
 Metodą na zwiększanie ilości binów w transformacie Fouriera jest przedłużanie sygnału zerami (zero-padding). Jest to szczególny przypadek następującego podejścia: Nasz "prawdziwy" sygnał jest długi. Oglądamy go przez prostokątne okno, które ma wartość 1 na odcinku czasu, dla którego próbki mamy dostępne i 0 dla pozostałego czasu. W efekcie możemy myśleć, że oglądany przez nas sygnał to efekt przemnożenia "prawdziwego" sygnału przez okno. Efekty takiego przedłużania proszę zbadać:
@@ -132,7 +132,7 @@ for T in np.linspace(1,1.2,4):
    
 3. Spróbuj odczytać parametry [sygnału](_resources/lab_2/test_signal_z_3.hdf) częstotliwość próbkowania, długość w [s] oraz liczbę składowych  harmonicznych oraz ich częstotliwości, wiedząc że sygnał zawiera <7 składowych, a dane umieszczone są w Dataframie, gdzie indeksem jest czas
 
-4. Spróbuj stworzyć prosty filtr, który z widma sygnału wytnie skłądową 50Hz (pamiętaj że wycięcie skłądowej z widma oznacza usunięcie skłądowej o częstotliwości 50Hz i fs-50Hz). Przygotuj następujący sygnał syntetyczny:
+4. (dla chętnych) Spróbuj stworzyć prosty filtr, który z widma sygnału wytnie składową 50Hz (pamiętaj że wycięcie składowej z widma oznacza usunięcie składowej o częstotliwości 50Hz i fs-50Hz). Przygotuj następujący sygnał syntetyczny:
 $$
 y = sin(2\cdot \pi \cdot 10 \cdot t) + 0.5 \cdot sin(2\cdot \pi \cdot 45 \cdot t) + 2 \cdot sin(2\cdot \pi \cdot 50 \cdot t)
 $$
@@ -140,7 +140,7 @@ gdzie częstotliwość próbkowania fs = 500Hz
 Filtrację wykonaj dla dwóch sytuacji:
 - dla okresu obserwacji 1s
 - dla okresu obserwacji 1.11s
-W celu porównania efektów filtracji nałóż na siebie sygnał syntetyczny bez skłądowej 50Hz oraz sygnał przefiltrowany. Możesz również wyświetlić różnicę tych sygnałów. 
+W celu porównania efektów filtracji nałóż na siebie sygnał syntetyczny bez składowej 50Hz oraz sygnał przefiltrowany. Możesz również wyświetlić różnicę tych sygnałów. 
 Obserwacje zapamiętaj, będą potrzebne na kolejnych zajęciach.
 
    

@@ -88,13 +88,14 @@ Więcej na ten temat możesz znaleźć w [dokumentacji](https://docs.scipy.org/d
 - obliczamy odpowiedź impulsową (IFFT)
 - przycinamy filtr do żądanej długości za pomocą funkcji okna
 - przesuwamy w osi czasu, tak by zaczynał się w t=0
+
 **UWAGA:** Długość filtru, najbardziej uniwersalne są filtry o długości nieparzystej (I typu) (można zrealizować wszystkie typy)
 
 
 ## Zadania
 1. Wykorzystując odpowiedź impulsową filtra zaprojektowaną w poprzednim tygodniu zastosuj okno kaisera przycinając filtr do długości 1s (jako długość wybierz najbliższą, nieparzystą liczbę próbek)
 2. Przetestuj działanie takiego filtra stosując funkcję `lfilter`przyjmując że argument `b` zawiera współczynniki odpowiedzi impulsowej a `a` wynosi 1. Sprawdź efekt filtracji wyznaczając widmo sygnału
-3. Przystosuj metodę do pracy w trybie on-line, tzn. do wielokrotnego wywołania funkcji lfilter dla nowych próbek. W takiej sytuacji konieczne jest przechowywanie informacji o stanie filtra. W tym celu wykorzystaj funkcję `lfilter_zi` do wygenerowania stanu początkowego:
+3. Przystosuj metodę do pracy w trybie on-line, tzn. do wielokrotnego wywołania funkcji `lfilter` dla nowych próbek. W takiej sytuacji konieczne jest przechowywanie informacji o stanie filtra. W tym celu wykorzystaj funkcję `lfilter_zi` do wygenerowania stanu początkowego:
 `zi = lfilter_zi(b, 1)`
 
 i następnie przy każdym wywołaniu funkcji lfilter:
@@ -111,6 +112,6 @@ fg = fc + df
 Nn = 501
 b = sig.firwin(Nn, (fd, fg), pass_zero='bandstop', fs=fs)
 ```
-Zastosuj ten filt do filtraci online danych z czujnika Trigno
+Zastosuj ten filtr do filtracji online danych z czujnika Trigno
 
 Autorzy: *Piotr Kaczmarek*

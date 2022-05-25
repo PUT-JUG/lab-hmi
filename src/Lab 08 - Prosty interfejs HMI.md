@@ -14,7 +14,7 @@ Interfejs będzie umożliwiaj generację 2 komend. np. ruch w lewo i w prawo, kt
 
 ![HMI1ch](./_resources/hmi_1ch.png)
 
-DO działania prócz wykorzsytania elementów opracowanych na poprzednich zajęciach (filtracja wstępna, wyznaczanie cech) potrzebna będzie normalizacja sygnału, pozwalająca wyrazić w procentach strefy aktywności (zakresy wartości RMS)
+DO działania prócz wykorzystania elementów opracowanych na poprzednich zajęciach (filtracja wstępna, wyznaczanie cech) potrzebna będzie normalizacja sygnału, pozwalająca wyrazić w procentach strefy aktywności (zakresy wartości RMS)
 
 ### Normalizacja
 Operacja normalizacji jest jednym z podstawowych wymogów skutecznej klasyfikacji. W zakresie analizy sygnału EMG amplituda sygnału EMG zależy od cech osobnicznych, lokalizacji elektrod, oraz parametrów fizycznych kontaktu między elektrodą a skórą. Zazwyczaj, dla uzyskania powtarzalnych efektów sygnał EMG, jest normalizowanny względem maksymalnego skurczy dowolnego, tzn wartości sygnału EMG podczas, której użytkownik generuje maksymalną siłę skurczu (np. zaciska pięść)
@@ -46,7 +46,7 @@ $$
 4. Stwórz pipeline integrujący dane z sensora Trigno:
    - akwizycja danych
    - filtracja
-   - wyznaczanie rms
+   - wyznaczanie rms, pamiętaj, żeby integrować sygnał zawsze o tej samej długości, stąd do gromadzenia danych użyj [bufora cyklicznego](https://docs.python.org/3/library/collections.html#collections.deque) określając maksymalną długość bufora (`maxlen`) na taka jaka ustawiona jest jako okno funkcji RMS 
    - zastosowanie normalizacji
    - klasyfikator w postaci funkcji progowania.  Funkcja powinna zwracać 3 wartości:
      - `idle` - 0-30% (lub progi pośrednie) MVC

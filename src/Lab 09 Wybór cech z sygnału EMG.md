@@ -1,6 +1,6 @@
 <!-- for math equations - MathJax -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
-# Lab10. Wybór cech z sygnału EMG
+# Lab9. Wybór cech z sygnału EMG
 
 ## Wprowadzenie
 Dzisiejsze zajęcia dotyczą problemu wyboru cech sygnału EMG. Metody były omawiane na wykładzie. W praktyce często używa się metod owijających, których celem jest wybór zestawu cech maksymalizującego dokładność modelu. Z uwagi na dużą złożoność obliczeniową, zajmiemy się metodami wybór cech opartymi o model lasu drzew decyzyjnych.
@@ -36,8 +36,8 @@ data_train= pd.read_hdf(f'{path}/train_03_2018-06-14_2_All')
 data_test= pd.read_hdf(f'{path}/test_03_2018-06-14_2_All')
 columns = list(data_train.filter(regex='input').columns)
 
-X_train = data_test[columns]
-y_train = data_test['output_0']
+X_train = data_train[columns]
+y_train = data_train['output_0']
 X_test = data_test[columns]
 y_test = data_test['output_0']
 
@@ -105,7 +105,7 @@ dendrogram(
 
 plt.show()
 th=2.0
-plt.axvline(x=, c='grey', lw=1, linestyle='dashed')
+plt.axvline(x=th, c='grey', lw=1, linestyle='dashed')
 
 ```
 Które cechy są podobne, ile jest różnych klastrów na zaproponowanym poziomie odcięcia?
